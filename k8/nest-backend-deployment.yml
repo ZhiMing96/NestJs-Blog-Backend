@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: nest-app-deployment
+  labels:
+    app: nest-app
+spec:
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: nest-app
+  template:
+    metadata: 
+      labels:
+        app: nest-app
+    spec: 
+      containers:
+      - name: nest-app
+        image: kohzhiming96/nestjs-blog
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DATABASE_SERVER
+          value: mongodb-service
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: nest-app-service
+spec:
+  selector:
+    app: nest-app
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 3000
+      nodePort: 30001
