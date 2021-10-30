@@ -1,3 +1,4 @@
 nestjs-app.kohzhiming.com {
-  reverse_proxy nestjs-app:8080
+  tls k.zhiming@outlook.com
+  reverse_proxy nestjs-app:3000
 }
