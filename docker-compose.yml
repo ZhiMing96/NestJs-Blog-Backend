@@ -19,7 +19,7 @@ services:
     environment:
       - DATABASE_SERVER=mongo
     volumes:
-      - .:/usr/src/app
+      - app:/usr/src/app
 
   caddy:
     image: caddy/caddy:2.4.5-alpine
@@ -38,6 +38,7 @@ services:
       - caddy_config:/config
 
 volumes:
+  app:
   data:
   caddy_data:
   caddy_config:
