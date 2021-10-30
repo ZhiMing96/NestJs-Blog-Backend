@@ -8,8 +8,9 @@ services:
     volumes:
       - data:/data/db
 
-  app:
+  nestjs-app:
     image: kohzhiming96/nestjs-blog
+    container_name: nestjs-app
     restart: always
     links:
       - mongo
@@ -20,5 +21,23 @@ services:
     volumes:
       - .:/usr/src/app
 
+  caddy:
+    image: caddy/caddy:2.4.5-apline
+    container_name: caddy-service
+    depends_on:
+      - 'nestjs-app'
+    restart: always
+    ports:
+      - '443:443'
+      - '80:80'
+    volumes:
+      # - ./Caddyfile:/etc/caddy/Caddyfile
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+      - $PWD/site:/srv
+      - caddy_data:/data
+      - caddy_config:/config
+
 volumes:
   data:
+  caddy_data:
+  caddy_config:
