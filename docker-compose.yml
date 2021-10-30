@@ -22,7 +22,7 @@ services:
       - .:/usr/src/app
 
   caddy:
-    image: caddy/caddy:2.4.5-apline
+    image: caddy/caddy:2.4.5-alpine
     container_name: caddy-service
     depends_on:
       - 'nestjs-app'
