@@ -4,6 +4,8 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+Backend is hosted in AWS EC2 instance via this url: https://nestjs-app.kohzhiming.com/blog-post
+
 ## Installation
 
 ```bash
